@@ -69,12 +69,6 @@ function registerDarkElegantTemplates() {
     <rect x="0" y="0" width="${W}" height="${H}" rx="12" fill="none" stroke="#1e3a8a" stroke-width="1"/>
     <rect x="0" y="0" width="5" height="${H}" rx="3" fill="url(#de_male_accent)"/>
     <line x1="10" y1="1" x2="${W - 10}" y2="1" stroke="#38bdf8" stroke-width="0.6" opacity="0.35"/>
-    <circle cx="42" cy="50" r="22" fill="#071e38"/>
-    <circle cx="42" cy="50" r="20" fill="none" stroke="#38bdf8" stroke-width="0.8" opacity="0.5"/>
-    <circle cx="42" cy="51" r="8" fill="none" stroke="#38bdf8" stroke-width="1.4"/>
-    <line x1="48" y1="45" x2="53" y2="40" stroke="#38bdf8" stroke-width="1.4"/>
-    <line x1="49" y1="40" x2="53" y2="40" stroke="#38bdf8" stroke-width="1.4"/>
-    <line x1="53" y1="40" x2="53" y2="44" stroke="#38bdf8" stroke-width="1.4"/>
     <circle cx="191" cy="82" r="2" fill="#38bdf8" opacity="0.5"/>
     <circle cx="200" cy="82" r="2" fill="#38bdf8" opacity="0.3"/>
     <circle cx="209" cy="82" r="2" fill="#38bdf8" opacity="0.15"/>
@@ -84,13 +78,14 @@ function registerDarkElegantTemplates() {
   maleTmpl.node = maleNode;
   maleTmpl.field_0 = `
     <text
-      data-width="${W - 80}"
+      data-width="${W - 24}"
       style="font-size:14px;font-weight:600;letter-spacing:0.3px;"
       fill="#f1f5f9"
-      x="78" y="45"
-      text-anchor="start"
+      x="${W / 2}" y="46"
+      text-anchor="middle"
     >{val}</text>
-    <text x="78" y="62" style="font-size:9px;letter-spacing:1.5px;" fill="#38bdf8" opacity="0.8">LAKI-LAKI</text>
+    <line x1="20" y1="58" x2="${W - 20}" y2="58" stroke="#38bdf8" stroke-width="0.5" opacity="0.25"/>
+    <text x="${W / 2}" y="72" style="font-size:9px;letter-spacing:1.8px;" fill="#38bdf8" opacity="0.6" text-anchor="middle">LAKI-LAKI</text>
   `;
 
   maleTmpl.link = `<path stroke-linejoin="round" stroke="#1d4ed8" stroke-width="1.5px" fill="none" d="{rounded}"/>`;
@@ -110,11 +105,6 @@ function registerDarkElegantTemplates() {
     <rect x="0" y="0" width="${W}" height="${H}" rx="12" fill="none" stroke="#831843" stroke-width="1"/>
     <rect x="0" y="0" width="5" height="${H}" rx="3" fill="url(#de_female_accent)"/>
     <line x1="10" y1="1" x2="${W - 10}" y2="1" stroke="#f472b6" stroke-width="0.6" opacity="0.35"/>
-    <circle cx="42" cy="50" r="22" fill="#1a0824"/>
-    <circle cx="42" cy="50" r="20" fill="none" stroke="#f472b6" stroke-width="0.8" opacity="0.5"/>
-    <circle cx="42" cy="46" r="8" fill="none" stroke="#f472b6" stroke-width="1.4"/>
-    <line x1="42" y1="54" x2="42" y2="62" stroke="#f472b6" stroke-width="1.4"/>
-    <line x1="38" y1="58" x2="46" y2="58" stroke="#f472b6" stroke-width="1.4"/>
     <circle cx="191" cy="82" r="2" fill="#f472b6" opacity="0.5"/>
     <circle cx="200" cy="82" r="2" fill="#f472b6" opacity="0.3"/>
     <circle cx="209" cy="82" r="2" fill="#f472b6" opacity="0.15"/>
@@ -124,13 +114,14 @@ function registerDarkElegantTemplates() {
   femaleTmpl.node = femaleNode;
   femaleTmpl.field_0 = `
     <text
-      data-width="${W - 80}"
+      data-width="${W - 24}"
       style="font-size:14px;font-weight:600;letter-spacing:0.3px;"
       fill="#f1f5f9"
-      x="78" y="45"
-      text-anchor="start"
+      x="${W / 2}" y="46"
+      text-anchor="middle"
     >{val}</text>
-    <text x="78" y="62" style="font-size:9px;letter-spacing:1.5px;" fill="#f472b6" opacity="0.8">PEREMPUAN</text>
+    <line x1="20" y1="58" x2="${W - 20}" y2="58" stroke="#f472b6" stroke-width="0.5" opacity="0.25"/>
+    <text x="${W / 2}" y="72" style="font-size:9px;letter-spacing:1.8px;" fill="#f472b6" opacity="0.6" text-anchor="middle">PEREMPUAN</text>
   `;
 
   femaleTmpl.link = `<path stroke-linejoin="round" stroke="#9d174d" stroke-width="1.5px" fill="none" d="{rounded}"/>`;
@@ -150,22 +141,20 @@ function registerDarkElegantTemplates() {
     <rect x="0" y="0" width="${W}" height="${H}" rx="12" fill="none" stroke="#334155" stroke-width="1"/>
     <rect x="0" y="0" width="5" height="${H}" rx="3" fill="url(#de_neutral_accent)"/>
     <line x1="10" y1="1" x2="${W - 10}" y2="1" stroke="#94a3b8" stroke-width="0.6" opacity="0.3"/>
-    <circle cx="42" cy="50" r="22" fill="#0d1929"/>
-    <circle cx="42" cy="50" r="20" fill="none" stroke="#64748b" stroke-width="0.8" opacity="0.5"/>
-    <text x="42" y="56" font-size="18" fill="#475569" text-anchor="middle">?</text>
   `;
 
   const neutralTmpl = Object.assign({}, baseDE);
   neutralTmpl.node = neutralNode;
   neutralTmpl.field_0 = `
     <text
-      data-width="${W - 80}"
+      data-width="${W - 24}"
       style="font-size:14px;font-weight:600;letter-spacing:0.3px;"
       fill="#cbd5e1"
-      x="78" y="45"
-      text-anchor="start"
+      x="${W / 2}" y="46"
+      text-anchor="middle"
     >{val}</text>
-    <text x="78" y="62" style="font-size:9px;letter-spacing:1.5px;" fill="#64748b" opacity="0.8">—</text>
+    <line x1="20" y1="58" x2="${W - 20}" y2="58" stroke="#475569" stroke-width="0.5" opacity="0.25"/>
+    <text x="${W / 2}" y="72" style="font-size:9px;letter-spacing:1.8px;" fill="#64748b" opacity="0.6" text-anchor="middle">—</text>
   `;
 
   // ── register templates ──────────────────────────────────────────────────────
@@ -205,6 +194,8 @@ export default function Home() {
       showXScroll:  FamilyTree.scroll.visible,
       orientation:  orientationValue,
       editForm:     { buttons: { edit: null } },
+
+      // ── preserve Airtable row order ───────────────
 
       // ── use our dark elegant template as default ──
       template: "de",

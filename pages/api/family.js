@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
-  const TOKEN = process.env.AIRTABLE_TOKEN;
-  const BASE_ID = process.env.AIRTABLE_BASE_ID;
+  const TOKEN      = process.env.AIRTABLE_TOKEN;
+  const BASE_ID    = process.env.AIRTABLE_BASE_ID;
   const TABLE_NAME = "Members";
 
   async function fetchAllRecords(offset, allRecords) {
@@ -8,26 +8,20 @@ export default async function handler(req, res) {
     if (offset) url += `&offset=${offset}`;
 
     const response = await fetch(url, {
-      headers: { Authorization: `Bearer ${TOKEN}` }
+      headers: { Authorization: `Bearer ${TOKEN}` },
     });
 
     const data = await response.json();
 
-    // Kalau Airtable return error, lempar supaya ketangkap di catch
     if (data.error) {
       throw new Error(`Airtable: ${data.error.type} — ${data.error.message}`);
     }
-
-    // Kalau tidak ada records sama sekali
     if (!data.records) {
       throw new Error(`Response tidak punya 'records'. Response: ${JSON.stringify(data)}`);
     }
 
     const records = allRecords.concat(data.records);
-
-    if (data.offset) {
-      return fetchAllRecords(data.offset, records);
-    }
+    if (data.offset) return fetchAllRecords(data.offset, records);
     return records;
   }
 
@@ -35,13 +29,13 @@ export default async function handler(req, res) {
     const records = await fetchAllRecords(null, []);
 
     const familyData = records
-      .filter(record => record && record.fields) // skip record kosong
-      .map(record => {
-        const f = record.fields;
+      .filter((record) => record && record.fields)
+      .map((record) => {
+        const f    = record.fields;
         const node = {};
 
-        node.id = parseInt(f.id);
-        node.name = f.name || "";
+        node.id     = parseInt(f.id);
+        node.name   = f.name || "";
         node.gender = f.gender || "";
 
         if (f.fid) node.fid = parseInt(f.fid);
@@ -52,14 +46,17 @@ export default async function handler(req, res) {
           node.pids = f.pids
             .toString()
             .split(",")
-            .map(p => parseInt(p.trim()))
-            .filter(p => !isNaN(p));
+            .map((p) => parseInt(p.trim()))
+            .filter((p) => !isNaN(p));
         }
 
         return node;
       })
-      // Filter node yang id-nya tidak valid
-      .filter(node => !isNaN(node.id));
+      .filter((node) => !isNaN(node.id))
+      // ── urutkan berdasarkan id ascending ──────────────────────────────────
+      // FamilyTreeJS membangun childrenIds dari urutan node dalam array ini.
+      // Karena id Anda sudah berurutan sesuai keinginan, sort by id cukup.
+      .sort((a, b) => a.id - b.id);
 
     res.setHeader("Cache-Control", "s-maxage=3600, stale-while-revalidate");
     res.status(200).json(familyData);
