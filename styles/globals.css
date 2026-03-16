@@ -5,7 +5,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #2b2b2b;
     --foreground: #ededed;
   }
 }
@@ -40,3 +40,7 @@ a {
     color-scheme: dark;
   }
 }
+
+svg.hugo .node.male>rect {
+    fill: #039be5;
+} 
